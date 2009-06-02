@@ -1,0 +1,40 @@
+\documentclass[pdf]{article}
+
+%% should be ignored by latex, put read by python
+\owldoc{outputdoc}
+
+
+\begin{document}
+
+
+Here is a piece of OWL that should be readable in the documentation and in the
+OMN output. 
+
+\begin{owl}
+Class: Thing
+\end{owl}
+
+\owl{owl.pomn}
+
+Here is a piece of OWL that should be readable in the OMN output but is to
+boring to be worth of consideration for the documentation. 
+
+\ignore{
+  \begin{owl}
+    Class: BoringOWL
+  \end{owl}
+}
+
+\ignore{\owl{owl.pomn}}
+
+Here is a piece of broken OWL that should be rendered in the documentation (as
+broken!) but should be ignored in the OMN. 
+
+\begin{notowl}
+Clazz: BrokenOwl
+\end{notowl}
+
+\notowl{owl}
+
+
+\end{document}

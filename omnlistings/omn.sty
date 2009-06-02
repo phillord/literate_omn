@@ -1,0 +1,23 @@
+\ProvidesPackage{omn}
+%% This defines a new language style for the listings package. 
+%% Stick 
+%% \usepackage{omn}
+%% Into your preamble and all should work. If you really want to, try 
+%% \omnbw to turn off my funky colours
+%% This supports Manchester syntax
+
+\RequirePackage{color}
+\RequirePackage{listings}
+
+\lstdefinelanguage{omn}%
+{comment=[s]{/*}{*/},
+  keywords={Ontology,Namespace,Class,ObjectProperty,domain,inverseOf,%
+    owl:Thing,partial,complete,restriction,someValuesFrom,intersectionOf,allValuesFrom,%
+  Individual,type,value,SubClassOf},
+  string=[d]"}
+[keywords,comments,strings]
+
+\lstset{keywordstyle=\color{green}\bfseries,commentstyle=\color{red}\itseries}
+\newcommand{\omnbw}{\lstset{keywordstyle=\itshape,commentstyle=\bfseries}}
+
+

@@ -1,0 +1,42 @@
+\documentclass[pdftex]{article}
+
+\usepackage{omndoc}
+
+%% should be ignored by latex, put read by python
+%% \omndoc{outputdoc}
+
+
+\begin{document}
+
+
+Here is a piece of OWL that should be readable in the documentation and in the
+OMN output. 
+
+\begin{omn}
+Class: FirstClass
+\end{owl}
+
+\omn{owl.pomn}
+
+Here is a piece of OWL that should be readable in the OMN output but is to
+boring to be worth of consideration for the documentation. 
+
+\ignore{
+  \begin{omn}
+    Class: BoringOWL
+  \end{omn}
+}
+
+\ignore{\omn{second.pomn}}
+
+Here is a piece of broken OWL that should be rendered in the documentation (as
+broken!) but should be ignored in the OMN. 
+
+\begin{notomn}
+Clazz: BrokenOmn
+\end{notomn}
+
+\notowl{third.pomn}
+
+
+\end{document}
