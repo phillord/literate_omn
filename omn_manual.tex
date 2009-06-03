@@ -1,0 +1,50 @@
+\documentclass{article}
+
+\usepackage{omndoc}
+
+\title{Omndoc: a manual}
+\author{Phillip Lord}
+\omndoc{omndoc_manual.omn}
+
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+  This document describes the OMNDoc system, which is designed to support
+  literate development of Ontologies using the Manchester OWL syntax. At the
+  moment, the system is very preliminary!
+\end{abstract}
+
+\section{Introduction}
+\label{sec:introduction}
+
+An ontology is meant to fulfil two functions: firstly, it is meant to
+represent knowledge in an way which is explicit and precise for a human and,
+secondly, it provides a computational artifact which is meant to do something.
+Unlike a normal computer program, though, the ``something'' in this case is a
+varied. In some cases, the computational properties are there solely
+to support the development of the human artifact; sometimes, it can provide
+more enhanced query or browsing over data described with the ontology;
+sometimes, the computational properties are used to predict new knowledge.
+
+As a result, an ontology much more so than a program is much more of a
+narrative document. As well as the axiomatisation and essential user
+documentation, we wish to document use cases, design decisions, notices for
+use and so on. Currently, this is being done in a slighly \textit{ad hoc} way;
+usually by adding to the documentation within the ontology. This works to some
+extent, but the documentation environment is fairly poor: no sections,
+cross-references, bibliography and so on. 
+
+OMNDoc is an attempt to bridge this gap. Instead of writing an Ontology and
+then some documentation, the idea is that you write a single source file which
+can be used to generate both the documentation and the axiomatisation. This is
+an old idea -- literate programming -- which is perhaps more relevant to
+ontology building than more traditional programming tasks. 
+
+\section{Usage}
+\label{sec:usage}
+
+
+
+\end{document}

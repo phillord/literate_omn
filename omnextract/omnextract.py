@@ -8,9 +8,13 @@ def main( argv ):
     document = Document( argv[ 1 ] )
 
     ## add the relevant macros
-    OwlMacro( document )
+    OmnMacro( document )
+    OmnDoc( document )
     document.render()
-    output = open( argv[ 2 ], "w" )
+
+    print( "Outputfile:" + document.get_outputfile() )
+    
+    output = open( document.get_outputfile(), "w" )
     output.write( document.get_output() )
     
 
@@ -39,6 +43,7 @@ class Document:
         BeginEnvironmentMacro(self)
         EndEnvironmentMacro(self)
         self.output = ""
+        self.outputfile = file
         
 
     def add_macro(self, macro):
@@ -81,6 +86,12 @@ class Document:
     
     def add_output(self,line):
         self.output = self.output + line
+
+    def get_outputfile(self):
+        return self.outputfile
+
+    def set_outputfile(self,file):
+        self.outputfile = file
         
 class Macro:
     def __init__(self, document, macroname):
@@ -136,15 +147,22 @@ class EndEnvironmentMacro(Macro):
 
 
 ## the owldoc macros
-class OwlMacro(Macro):
+class OmnMacro(Macro):
     def __init__(self, document):
-        Macro.__init__(self,document,"owl")
+        Macro.__init__(self,document,"omn")
 
     def render(self, argument, output):
         ## read the file in and dump it out!
         finputcontent = open( argument ).read()
         self.document.add_output( finputcontent + "\n" )
         
+class OmnDoc(Macro):
+    def __init__(self, document):
+        Macro.__init__(self, document, "omndoc")
+
+    def render(self, argument, output):
+        self.document.set_outputfile(argument)
+
 
 main(sys.argv)
 

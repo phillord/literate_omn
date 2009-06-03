@@ -3,9 +3,8 @@
 
 \RequirePackage{listings}
 \RequirePackage{omn}
-
+\RequirePackage{url}
 %% just ignore this for the moment -- do something more later on. 
-\newcommand{\omndoc}[1]{}
 \newcommand{\ignore}[1]{}
 
 \newcommand{\omn}[1]{\lstinputlisting[language=omn]{#1}}
@@ -17,5 +16,54 @@
 
 
 
+
+%% redefine make title with some more proceedural information in it; this may
+%% be a mistake, I am not sure yet. 
+\newcommand{\@Author}{.}
+\renewcommand{\author}[1]{\gdef\@Author{#1}}
+
+\newcommand{\@Version}{.}
+\newcommand{\version}[1]{\gdef\@Version{#1}}
+
+\newcommand{\@unknowntitle}{Unknown Title}
+\newcommand{\@Title}{.}
+\renewcommand{\title}[1]{\gdef\@Title{#1}}
+
+\newcommand{\@Omndoc}{.}
+\newcommand{\omndoc}[1]{\gdef\@Omndoc{\url{#1}}}
+
+\renewcommand{\maketitle}{
+  \begin{huge}
+    \if\@Title.
+    \textbf{\raggedright\@unknowntitle}]
+    \else
+    \textbf{\raggedright\@Title}
+    \fi\\
+  \end{huge}
+  %% Don't know why, but this only works in two column mode. 
+  \vspace{5mm}
+  \begin{tabular}{l c}
+    \\
+    \if\@Author.
+    \textbf{Author:} & Unknown \\
+    \else
+    \textbf{Author:} & \@Author \\
+    \fi
+    
+    \if\@Version.
+    \else
+    \textbf{Issue No:} & \@Version \\
+    \fi
+    
+    \textbf{Date:} & \@date \\
+  
+    \if\@Owldoc.
+    \textbf{Omndoc:} & Unknown \\
+    \else
+    \textbf{Omndoc:} & \@Omndoc \\
+    \fi
+  \end{tabular}
+  
+}
 
 

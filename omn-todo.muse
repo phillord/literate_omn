@@ -1,0 +1,22 @@
+
+
+** Omnextract
+
+ - error checking
+ - owl doc location
+ - add owl path command line option
+ - environments are currently not working. 
+ - move to line orientated scanning, to support comments
+
+
+** Omndoc
+ 
+ - do something sensible with OWL doc (put as a foot note, or modify
+   maketitle).
+ - why are my environments not working at all? 
+ 
+** Omn style
+
+ - Fiddle with the style!
+
+
