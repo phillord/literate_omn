@@ -4,6 +4,8 @@
 \RequirePackage{listings}
 \RequirePackage{omn}
 \RequirePackage{url}
+
+
 %% just ignore this for the moment -- do something more later on. 
 \newcommand{\ignore}[1]{}
 
@@ -11,10 +13,8 @@
 \newcommand{\notomn}[1]{\omn{#1}}
 
 %% should also pass in optional args
-%%\newenvironment{omn}[0]{\begin{textbf}}{\end{textbf}}
-%\newenvironment{notomn}{\lstset{language=omn}\tiny}
-
-
+%% \newenvironment{omn}[0]{\begin{textbf}}{\end{textbf}}
+% \newenvironment{notomn}{\lstset{language=omn}\tiny}
 
 
 %% redefine make title with some more proceedural information in it; this may
@@ -30,18 +30,16 @@
 \renewcommand{\title}[1]{\gdef\@Title{#1}}
 
 \newcommand{\@Omndoc}{.}
-\newcommand{\omndoc}[1]{\gdef\@Omndoc{\url{#1}}}
+\newcommand{\omndoc}[1]{\gdef\@Omndoc{#1}}
 
 \renewcommand{\maketitle}{
   \begin{huge}
     \if\@Title.
-    \textbf{\raggedright\@unknowntitle}]
+    \textbf{\raggedright\@unknowntitle}
     \else
     \textbf{\raggedright\@Title}
     \fi\\
   \end{huge}
-  %% Don't know why, but this only works in two column mode. 
-  \vspace{5mm}
   \begin{tabular}{l c}
     \\
     \if\@Author.
@@ -56,14 +54,14 @@
     \fi
     
     \textbf{Date:} & \@date \\
-  
-    \if\@Owldoc.
+
+    \if\@Omndoc.
     \textbf{Omndoc:} & Unknown \\
     \else
     \textbf{Omndoc:} & \@Omndoc \\
     \fi
   \end{tabular}
-  
 }
+
 
 
