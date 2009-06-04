@@ -29,8 +29,8 @@
 \newcommand{\@Title}{.}
 \renewcommand{\title}[1]{\gdef\@Title{#1}}
 
-\newcommand{\@Omndoc}{.}
-\newcommand{\omndoc}[1]{\gdef\@Omndoc{#1}}
+\newcommand{\@Omndoc}{Unknown}
+\newcommand{\omndoc}[1]{\urldef\omndocfile\url{#1}\gdef\@Omndoc{\omndocfile}}
 
 \renewcommand{\maketitle}{
   \begin{huge}
@@ -55,11 +55,7 @@
     
     \textbf{Date:} & \@date \\
 
-    \if\@Omndoc.
-    \textbf{Omndoc:} & Unknown \\
-    \else
     \textbf{Omndoc:} & \@Omndoc \\
-    \fi
   \end{tabular}
 }
 
