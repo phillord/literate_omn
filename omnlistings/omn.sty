@@ -10,14 +10,19 @@
 \RequirePackage{listings}
 
 \lstdefinelanguage{omn}%
-{comment=[s]{/*}{*/},
-  keywords={Ontology,Namespace,Class,ObjectProperty,domain,inverseOf,%
-    owl:Thing,partial,complete,restriction,someValuesFrom,intersectionOf,allValuesFrom,%
-  Individual,type,value,SubClassOf},
-  string=[d]"}
-[keywords,comments,strings]
+{%
+  comment=[s]{/*}{*/},
+  morekeywords={Ontology,Namespace,Class,ObjectProperty,Domain,Range,InverseOf,%
+    owl:Thing,DisjointWith,%
+    Individual,SubClassOf,Annotations,EquivalentTo,SubPropertyOf},
+  morendkeywords=[2]{some,or},
+  morecomment=[l]\#,
+  string=[d]"
+ }[keywords,comments,strings]
 
-\lstset{keywordstyle=\color{green}\bfseries,commentstyle=\color{red}\itseries}
+\lstset{basicstyle=\tiny,keywordstyle=\color{green}\bfseries,stringstyle=\color{red},%
+  ndkeywordstyle=\color{blue},%
+  commentstyle=\color{red}\itshape,showstringspaces=false}
 \newcommand{\omnbw}{\lstset{keywordstyle=\itshape,commentstyle=\bfseries}}
 
 
