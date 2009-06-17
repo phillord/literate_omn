@@ -1,0 +1,21 @@
+\documentclass{article}
+
+\usepackage{listings}
+\usepackage{omn}
+\begin{document}
+
+
+\begin{lstlisting}[language=omn]
+Namespace: owl <http://www.w3.org/2003/07/owl#>
+
+Class: Test
+    Annotations:
+        rdfs:comment "A test comment"
+    SubClassOf:
+        test_relation some Test
+
+# Here is a comment
+ObjectProperty: test_relation
+\end{lstlisting}
+
+\end{document}
