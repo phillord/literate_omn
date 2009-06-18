@@ -1,0 +1,320 @@
+Namespace: rdfs <http://www.w3.org/2000/01/rdf-schema#>
+Namespace: owl2xml <http://www.w3.org/2006/12/owl2-xml#>
+Namespace: owl <http://www.w3.org/2002/07/owl#>
+Namespace: xsd <http://www.w3.org/2001/XMLSchema#>
+Namespace: rdf <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Namespace: function <http://homepages.cs.ncl.ac.uk/phillip.lord/function#>
+
+Ontology: <http://homepages.cs.ncl.ac.uk/phillip.lord/function/function.omn>
+
+Class: Occurrent
+    Annotations: 
+        rdfs:comment "Definition: As defined in BFO",
+        rdfs:comment "Source: BFO"
+
+Class: Process
+    Annotations:
+        rdfs:comment "Definition: As defined in BFO",
+        rdfs:comment "Source: BFO"
+    SubClassOf: 
+        Occurrent
+
+Class: Continuant
+    Annotations: 
+        rdfs:comment "Definition: As defined in BFO",
+        rdfs:comment "Source: BFO"
+
+Class: IndependentContinuant
+    Annotations: 
+        rdfs:comment "Definition: As defined in BFO",
+        rdfs:comment "Source: BFO"
+    SubClassOf: 
+        Continuant
+    
+Class: DependentContinuant
+    Annotations:   
+        rdfs:comment "Definition: As defined in BFO",
+        rdfs:comment "Source: BFO"
+    SubClassOf: 
+        Continuant,
+        inheres_in some IndependentContinuant
+        
+Class: RealizableEntity
+    Annotations:
+        rdfs:comment "Definition: As defined in BFO. Axiomatization modifed",
+        rdfs:comment 
+"Justification of Axiomatization: 
+Has a universal link to Process. RealizableEntities do not need to be realized,
+but if they are, it will be in some end-directed activity
+    
+Necessarily inheres_in an IndependentContinuant. This follows the definition from
+BFO; it may be incorrect, as it one of several axioms that prevent data, for example,
+having a function or role. 
+   
+Contains a covering axiom for Function and Role, which is there for 
+completeness."
+    SubClassOf: 
+        DependentContinuant,
+        Function
+        or Role,
+        inheres_in some IndependentContinuant,
+        realized_in only Process
+
+Class: Function
+    Annotations: 
+        rdfs:comment 
+
+"Definition: A function is a realizable entity which is either a biological
+function or an artifactual function.",
+
+        rdfs:comment
+
+"Justification for Definition: Definitions for biological function and
+artifactual function are relatively different, but complete in themselves.
+Rather than attempting to produce a very generic definition which is very
+unspecific, I have instead defined function as a simple union type between the
+subtypes. This fulfils the requirements that biological and artifactual
+functions are not artifically separated, forcing a duplication of their
+hierarchies",
+
+        rdfs:comment
+"Justification for Axiomatization: The covering axiom here replicates the 
+definition. 
+
+The existential function_of property reflects the desire that to be a function
+and individual be the function_of something. This relationship is both 
+necessary and sufficient. Only Functions can be a function_of
+
+Currently, Function is disjoint with Role. I am not sure that this is correct,
+but I have no example to distinguish between the two as yet. "
+
+
+    EquivalentTo:
+        function_of some IndependentContinuant
+    SubClassOf: 
+        RealizableEntity,
+        ArtifactualFunction
+        or BiologicalFunction 
+    DisjointWith:
+        Role
+
+Class: ArtifactualFunction
+    Annotations:
+        rdfs:comment
+"Definition: As for current BFO Function:
+
+Function is a relizable entity the manifestation of which is an essentially
+end-directed activity of a continuant entity being a specific kind of entity
+in the kind or kinds of context that it is made for."
+    SubClassOf:
+       Function
+
+Class: BiologicalFunction
+    Annotations:
+    rdfs:comment
+"Definition: A biological function is a realizable entity that inheres in continuant
+which is realized in an activity, and where the homologous structure(s) of
+individuals of closely related species (or identical species) fulfil this
+same biological function.",
+
+    rdfs:comment
+"Justification for Definition: The use of *structure* is generic and covers
+identifiable parts of organisms or their parts. The use of homology provides
+the link toward evolution in a way which allows a measurement. I have avoiding
+use of *selection*, as this would require us to differentiated between natural
+and sexual selection on one hand and artificial selection on the other. 
+
+The current definition is recursive; you need at least two individuals to
+determine if a particular RealizableEntity is a BiologicalFunction. While this
+might appear to not be true of a definition reliant on co-ordinated gene
+expression, in practice it is; we would need at least two individuals showing
+similar gene expression to show that it is co-ordinate. ",
+
+    rdfs:comment 
+
+"Justification for Axiomatization: This should include a
+existential restriction function_of to a biological entity, as an
+specialization of the definition in Function. The latter does not exist in BFO
+at the current time, and so this has been omitted for simplicity. There is
+also no representation of the homologous structure.
+
+This class is not disjoint from ArtifactualFunction. It seems most sensible
+that a synthetically constructed organism has both biological and artifactual
+function at the same time. "
+
+    SubClassOf: 
+        Function
+
+
+    
+Class: Role
+    Annotations:
+        rdfs:comment "Definition: As defined in BFO. Axiomatization modified.",
+
+        rdfs:comment
+
+"Justification for Axiomatization: Every role must be related to some
+IndependentContinuant by being a role_of it, which reflects the definition.
+
+This class is disjoint from Function -- see this class for a justification"
+
+
+    EquivalentTo: 
+        role_of some IndependentContinuant
+    SubClassOf: 
+        RealizableEntity
+    DisjointWith:
+        Function
+
+
+ObjectProperty: test
+
+ObjectProperty: realized_in
+    Annotations:
+        rdfs:comment "Definition: is a relationship between a RealizableEntity and 
+a Process, where RealizableEntity is apparent due to the involvement of the continuant
+on which it depends in that Process.",
+
+        rdfs:comment "Justification for Definition: This definition is a bit
+unwieldy but comes about because it is the IndependentContinuant that is a
+participant in the process. "
+
+    Domain: RealizableEntity 
+    Range: Process
+
+ObjectProperty: inheres_in
+    InverseOf: 
+        bearer_of
+
+ObjectProperty: bearer_of
+    InverseOf: 
+        inheres_in
+    
+ObjectProperty: has_function
+    Annotations:
+        rdfs:comment 
+
+"Justification for Axiomatization: We expect individuals at the range of this
+property to be asserted as RealizableEntity. The Domain and Range constraints
+will ensure that they individuals are properly classified as Function
+individuals."
+        
+    Domain: 
+        IndependentContinuant
+    Range: 
+        Function
+    InverseOf: 
+        function_of
+    SubPropertyOf: 
+        bearer_of
+    
+ObjectProperty: role_of
+    Annotations:
+        rdfs:comment
+
+"Justification for Axiomatization: See has_function"
+
+    Domain: 
+        Role
+    Range: 
+        IndependentContinuant
+    InverseOf: 
+        has_role
+    SubPropertyOf: 
+        inheres_in
+
+ObjectProperty: has_role
+    Annotations:
+        rdfs:comment
+
+"Justification for Axiomatization: See has_function"
+
+    Domain: 
+        IndependentContinuant
+    Range: 
+        Role
+    InverseOf: 
+        role_of
+    SubPropertyOf: 
+        bearer_of
+    
+ObjectProperty: function_of
+    Annotations:
+        rdfs:comment
+    
+"Justification for Axiomatization: See has_function"
+
+    Domain: 
+        Function
+    Range: 
+        IndependentContinuant
+    InverseOf: 
+        has_function
+    SubPropertyOf: 
+        inheres_in
+    
+
+ObjectProperty: biological_function_of
+    Annotations:
+        rdfs:comment
+    
+"Justification for Axiomatization: See has_function"
+
+    Domain: 
+        BiologicalFunction
+    Range: 
+        IndependentContinuant
+    InverseOf: 
+        has_biological_function
+    SubPropertyOf: 
+        function_of
+    
+ObjectProperty: has_biological_function
+    Annotations:
+        rdfs:comment
+
+"Justification for Axiomatization: See has_function"
+
+    Domain: 
+        IndependentContinuant
+    Range: 
+        BiologicalFunction
+    InverseOf: 
+        biological_function_of
+    SubPropertyOf: 
+        has_function
+        
+
+ObjectProperty: artifactual_function_of
+    Annotations:
+        rdfs:comment
+    
+"Justification for Axiomatization: See has_function"
+
+    Domain: 
+        ArtifactualFunction
+    Range: 
+        IndependentContinuant
+    InverseOf: 
+        has_artifactual_function
+    SubPropertyOf: 
+        function_of
+    
+ObjectProperty: has_artifactual_function
+    Annotations:
+        rdfs:comment
+
+"Justification for Axiomatization: See has_function"
+
+    Domain: 
+        IndependentContinuant
+    Range: 
+        ArtifactualFunction
+    InverseOf: 
+        artifactual_function_of
+    SubPropertyOf: 
+        has_function
+        
+
+
+

@@ -1,0 +1,37 @@
+\documentclass{article}
+
+\usepackage[pdftex]{color}
+\usepackage{omnsplit}
+%%\usepackage{listings}
+\usepackage{ntheorem}
+
+\theoremstyle{break}
+\theorembodyfont{}
+\newtheorem{omn}{Owl:}
+
+
+\begin{document}
+
+\omnsummary
+
+
+
+This file describes the \omndocfile{} file. 
+
+\omnobjprop{}{has_function}
+
+\omnclass{}{Occurrent}
+
+\omnclass{}{Function}
+
+Here is a reference~\ref{omn:role}.
+
+\begin{omn}
+  \label{omn:role}
+  \omnclass{}{Role}
+\end{omn}
+
+\omnobjprop{}{test}
+
+
+\end{document}

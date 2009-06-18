@@ -1,0 +1,47 @@
+\ProvidesPackage{omnsplit}
+
+\RequirePackage{xspace}
+\RequirePackage{url}
+\RequirePackage{listings}
+\RequirePackage{omn}
+
+\newcommand{\@Omn}[1]{\lstinputlisting[language=omn]{#1}}
+%%\newcommand{\@Omn}[1]{\input{#1}}
+
+\newcommand{\@OmnEntity}[3]{\@Omn{#1_#2!#3.pomn}}
+
+\newcommand{\omnclass}[2]{\@OmnEntity{Class}{#1}{#2}}
+\newcommand{\omnobjprop}[2]{\@OmnEntity{ObjectProperty}{#1}{#2}}
+
+\newcommand{\OmnEntityNo}{Unknown}
+\newcommand{\OmnEntityNoSet}[1]{\gdef\OmnEntityNo{#1}}
+\newcommand{\OmnEntityFileName}{Unknown}
+\newcommand{\OmnEntityFileNameSet}[1]{\gdef\OmnEntityFileName{#1}}
+
+\newcommand{\OmnEntitySetHeader}[1]{\gdef\OmnEntityHeaderNo{#1}}
+\OmnEntitySetHeader{0}
+\newcommand{\OmnEntitySetObjectProperty}[1]{\gdef\OmnEntityObjectPropertyNo{#1}}
+\OmnEntitySetObjectProperty{0}
+\newcommand{\OmnEntitySetClass}[1]{\gdef\OmnEntityClassNo{#1}}
+\OmnEntitySetClass{0}
+\newcommand{\OmnEntitySetIndividual}[1]{\gdef\OmnEntityIndividualNo{#1}}
+\OmnEntitySetIndividual{0}
+\newcommand{\OmnEntitySetDataProperty}[1]{\gdef\OmnEntityDataPropertyNo{#1}}
+\OmnEntitySetDataProperty{0}
+
+\newcommand{\omnsummary}{
+OMN from \texttt{\OmnEntityFileName{}} which contains \OmnEntityNo{} entities,
+consisting of:
+\begin{itemize}
+ \item \OmnEntityHeaderNo{} header(s)
+ \item \OmnEntityClassNo{} class(es)
+ \item \OmnEntityObjectPropertyNo{} object property(s)
+ \item \OmnEntityDataPropertyNo{} data property(s)
+ \item \OmnEntityIndividualNo{} individual(s)
+\end{itemize}
+}
+
+%% use a different file name, or it will try and input the .omn file. \input
+%% seems to prefer 
+\newcommand{\omndoc}[1]{\input{#1_summary.spt}}
+\newcommand{\omndocfile}{\texttt{\OmnEntityFileName}}
