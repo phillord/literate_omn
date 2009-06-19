@@ -2,36 +2,45 @@
 
 \usepackage[pdftex]{color}
 \usepackage{omnencap}
-%%\usepackage{listings}
-\usepackage{ntheorem}
 
-\theoremstyle{break}
-\theorembodyfont{}
-\newtheorem{omn}{Owl:}
-
+\omndoc{function}
 
 \begin{document}
 
-\omnsummary
+
+OmnHeader
+\OmnEntityHeaderheader
+
+Function
+
+\OmnEntityClassFunction
+
+ArtifactualFunction
+
+\OmnEntityClassArtifactualFunction
 
 
+And spelt out
 
-This file describes the \omndocfile{} file. 
-
-\omnobjprop{}{has_function}
-
-\omnclass{}{Occurrent}
+Function
 
 \omnclass{}{Function}
 
-Here is a reference~\ref{omn:role}.
+\omnclass{}{ArtifactualFunction}
 
-\begin{omn}
-  \label{omn:role}
-  \omnclass{}{Role}
-\end{omn}
 
-\omnobjprop{}{test}
+Summary
+
+\omnsummary
+
+This file describes the \omndocfile{} file. 
+
+
+\expandafter\def\csname Obi123\endcsname{hello}
+\csname Obi123\endcsname
+
+\expandafter\def\csname has_function\endcsname{hello}
+\csname has_function\endcsname
 
 
 \end{document}

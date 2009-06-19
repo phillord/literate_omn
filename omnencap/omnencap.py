@@ -107,15 +107,30 @@ class OmnOwlDoc:
 
             current_entity.add_definition( line )
 
+        ## now output the data
+        outfile = self.get_filename().split( "." )[0]  + "_ont.spt"
+        indexfile = self.get_filename().split( "." )[0] + "_index.spt"
+        output = open( outfile, "w" )
+        index = open( indexfile, "w" )
+        output_line_index = 1
+        
         for i in self.get_entities():
-            output = open( i.get_type() + "_" + i.get_namespace()
-                           + "!" + i.get_stated_name() + ".pomn", "w" )
             output.write( i.get_definition() )
+            output.write( "\n" )
 
+            definition_end = len( i.get_definition().splitlines() ) \
+                + output_line_index - 1
+            
+            
+            index.write( "\\newcommand{\OmnEntity" + i.get_tex_macro_name() + 
+                         "}{\lstinputlisting[language=omn,firstline=" + str( output_line_index ) + ","
+                         + "lastline=" +  str( definition_end ) + "]{"
+                         + outfile + "}}\n")
+            output_line_index = definition_end + 1
 
 class OmnEntity:
-    label_manipulate = re.compile( " " )
-    
+    name_manipulate = re.compile( "[^a-zA-Z]" )
+
     def __init__(self, type, namespace, name):
         self.type = type
         self.name = name
@@ -144,19 +159,22 @@ class OmnEntity:
     def set_label(self, label):
         self.label = label
 
-    def get_stated_name(self):
-        if( self.label ):
-            name = OmnEntity.label_manipulate.sub( "_", self.label )
-            if( len( name ) > 50 ):
-                return name[:50]
-            else:
-                return name
-            
 
-            
-        return self.name
-    
+    def get_tex_macro_name(self):
+
+        print( "label: " + self.label )
+        print( "name: " + self.name  )
+        name = self.get_type() + self.get_namespace()
         
+        if( self.label != "" ):
+            name = name + self.label
+        else:
+            name = name + self.name 
+
+        name = OmnEntity.name_manipulate.sub( "", name )
+
+        print( "macro:" + name[:50] + "\n" )
+        return name[:50]
 
 if( __name__ == "__main__" ):
     main( sys.argv[ 1 ] )

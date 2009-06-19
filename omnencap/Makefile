@@ -1,14 +1,14 @@
 
 
 all:
-	./omnsplit.py function.omn
+	./omnencap.py function.omn
 
 
 clean:
-	rm ~/bin/python/omnsplit.py
-	rm ~/documents/tex/phil/omnsplit.sty
+	rm ~/bin/python/omnencap.py
+	rm ~/documents/tex/phil/omnencap.sty
 	rm *.pomn
 
 publish:
-	cp omnsplit.py ~/bin/python
-	cp omnsplit.sty ~/documents/tex/phil
+	cp omnencap.py ~/bin/python
+	cp omnencap.sty ~/documents/tex/phil

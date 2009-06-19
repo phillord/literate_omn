@@ -103,7 +103,8 @@ class OmnOwlDoc:
             
             matchlabel = labelre.search( line )
             if( matchlabel ):
-                current_entity.set_label( matchlabel.group( 1 ) )
+            l
+            current_entity.set_label( matchlabel.group( 1 ) )
 
             current_entity.add_definition( line )
 

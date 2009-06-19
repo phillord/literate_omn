@@ -5,10 +5,8 @@
 \RequirePackage{listings}
 \RequirePackage{omn}
 
-\newcommand{\@Omn}[1]{\lstinputlisting[language=omn]{#1}}
-%%\newcommand{\@Omn}[1]{\input{#1}}
-
-\newcommand{\@OmnEntity}[3]{\@Omn{#1_#2!#3.pomn}}
+\newcommand{\@OmnEntity}[3]{%
+\csname OmnEntity#1#2#3\endcsname}
 
 \newcommand{\omnclass}[2]{\@OmnEntity{Class}{#1}{#2}}
 \newcommand{\omnobjprop}[2]{\@OmnEntity{ObjectProperty}{#1}{#2}}
@@ -43,5 +41,12 @@ consisting of:
 
 %% use a different file name, or it will try and input the .omn file. \input
 %% seems to prefer 
-\newcommand{\omndoc}[1]{\input{#1_summary.spt}}
+\newcommand{\omndoc}[1]{\input{#1_index.spt}\input{#1_summary.spt}}
 \newcommand{\omndocfile}{\texttt{\OmnEntityFileName}}
+
+\newenvironment{omn}
+{\begin{lstlisting}[language=omn]}
+{\end{lstlisting}}
+
+
+
