@@ -5,11 +5,9 @@
 \RequirePackage{listings}
 \RequirePackage{omn}
 
-\newcommand{\@OmnEntity}[3]{%
-\csname OmnEntity#1#2#3\endcsname}
 
-\newcommand{\omnclass}[2]{\@OmnEntity{Class}{#1}{#2}}
-\newcommand{\omnobjprop}[2]{\@OmnEntity{ObjectProperty}{#1}{#2}}
+\newcommand{\omnclass}[2]{\csname OmnEntityClass#1#2\endcsname}
+\newcommand{\omnobjprop}[2]{\csname OmnEntityObjectProperty#1#2\endcsname}
 
 \newcommand{\OmnEntityNo}{Unknown}
 \newcommand{\OmnEntityNoSet}[1]{\gdef\OmnEntityNo{#1}}

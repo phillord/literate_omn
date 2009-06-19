@@ -122,8 +122,10 @@ class OmnOwlDoc:
                 + output_line_index - 1
             
             
-            index.write( "\\newcommand{\OmnEntity" + i.get_tex_macro_name() + 
-                         "}{\lstinputlisting[language=omn,firstline=" + str( output_line_index ) + ","
+            index.write( "\expandafter\def\csname OmnEntity"
+                         + i.get_tex_macro_name() + 
+                         "\endcsname{\lstinputlisting[language=omn,firstline="
+                         + str( output_line_index ) + ","
                          + "lastline=" +  str( definition_end ) + "]{"
                          + outfile + "}}\n")
             output_line_index = definition_end + 1
@@ -162,8 +164,6 @@ class OmnEntity:
 
     def get_tex_macro_name(self):
 
-        print( "label: " + self.label )
-        print( "name: " + self.name  )
         name = self.get_type() + self.get_namespace()
         
         if( self.label != "" ):
@@ -171,9 +171,8 @@ class OmnEntity:
         else:
             name = name + self.name 
 
-        name = OmnEntity.name_manipulate.sub( "", name )
+        ##name = OmnEntity.name_manipulate.sub( "", name )
 
-        print( "macro:" + name[:50] + "\n" )
         return name[:50]
 
 if( __name__ == "__main__" ):

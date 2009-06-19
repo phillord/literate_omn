@@ -24,9 +24,12 @@ And spelt out
 
 Function
 
-\omnclass{}{Function}
+% \omnclass{}{Function}
 
-\omnclass{}{ArtifactualFunction}
+% \omnclass{}{ArtifactualFunction}
+
+
+\csname OmnEntityObjectPropertyhas_function\endcsname
 
 
 Summary
@@ -41,6 +44,25 @@ This file describes the \omndocfile{} file.
 
 \expandafter\def\csname has_function\endcsname{hello}
 \csname has_function\endcsname
+
+
+csname call
+\csname OmnEntityObjectPropertyhas_function\endcsname
+endcsname call
+
+Omn class has\_function
+
+begin test
+\newcommand{\test}[3]{\csname OmnEntity#1#2#3\endcsname}
+
+\test{ObjectProperty}{}{has_function}
+end test
+
+begin omnobjprop
+\omnobjprop{}{has_function}
+end omnobjprop
+
+\omnclass{input role}
 
 
 \end{document}
